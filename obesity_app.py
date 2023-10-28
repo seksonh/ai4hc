@@ -10,6 +10,9 @@ st.write("""
 This app predicts  obesity levels
 
 Data obtained from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition).
+         
+Developed By: 65076024 Tawichai Saekua and 65076069 Sekson Hompangwhai
+
 """)
 
 st.sidebar.header('User Input Features')
