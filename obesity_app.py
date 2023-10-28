@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import pickle
 from sklearn.ensemble import RandomForestClassifier
+from PIL import Image
+
 
 st.write("""
 # Estimation of obesity levels based on eating habits and physical condition
@@ -98,10 +100,15 @@ load_clf = pickle.load(open('obesity_clf.pkl', 'rb'))
 prediction = load_clf.predict(df)
 prediction_proba = load_clf.predict_proba(df)
 
-
+st.write(" ")
 st.subheader('Prediction')
+iBMI = df["Weight"]/(df["Height"]*df["Height"])
+st.subheader('BMI = ' + str(iBMI))
 obesity_Levels = np.array(['Insufficient Weight','Normal Weight','Overweight Level I','Overweight Level II','Obesity I','Obesity II','Obesity III'])
 st.write(obesity_Levels[prediction])
+
+image = Image.open('Body_Mass_Index.png')
+st.image(image, caption='Body Mass Index')
 
 st.subheader('Prediction Probability')
 st.write(prediction_proba)
