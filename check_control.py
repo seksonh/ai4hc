@@ -1,0 +1,22 @@
+import streamlit as st
+
+
+st.sidebar.title("General Information")
+Gender = st.sidebar.selectbox('What is your gender?',('Male','Female'))
+Age = st.sidebar.slider('what is your age?', 5.00,99.99,20.00)
+Height = st.sidebar.slider('what is your height (meters)?', 0.75,2.50,1.65)
+Weight = st.sidebar.slider('what is your weight (kilograms)?', 30.0,199.0,50.00)
+st.sidebar.subheader("The attributes related with eating habits")
+family_history_with_overweight = st.sidebar.radio('Has a family member suffered or suffers from overweight?',[":yes",":no"],captions=["Yes","No"],index=0,)
+FAVC = st.sidebar.radio('Do you eat high caloric food frequently (FAVC)?',[":yes",":no"],captions=["Yes","No"],index=0,)
+FCVC = st.sidebar.radio('Do you usually eat vegetables in your meals (FCVC)?',[":Never",":Sometimes", ":Always"],captions=["Never","Sometimes","Always"],index=0,)
+NCP = st.sidebar.slider('How many main meals do you have daily (NCP)?', 1.00,5.00,3.00)
+CAEC = st.sidebar.radio('Do you eat any food between meals (CAEC)?',[":no",":Sometimes",":Frequently",":Always"],captions=["No","Sometimes","Frequently","Always"],index=0,)
+SMOKE = st.sidebar.radio('Do you smoke (SMOKE)?',[":yes",":no"],captions=["Yes","No"],index=0,)
+st.sidebar.subheader("The attributes related with the physical condition are:")
+CH20 = st.sidebar.slider('How much water do you drink daily (litres) (CH20)?', 1.00,5.00,3.00)
+SCC = st.sidebar.radio('Do you monitor the calories you eat daily (SCC)?',[":yes",":no"],captions=["Yes","No"],index=0,)
+FAF = st.sidebar.slider('How often do you have physical activity (FAF)?', 1.00,5.00,3.00)
+TUE = st.sidebar.slider('How much time do you use technological devices such as cell phone, videogames, television, computer and others (hours) (TUE)?', 1.00,6.00,3.00)
+CALC = st.sidebar.radio('how often do you drink alcohol (CALC)?',[":no",":Sometimes",":Frequently",":Always"],captions=["no","Sometimes","Frequently","Always"],index=0,) 
+MTRANS = st.sidebar.radio('Which transportation do you usually use (MTRANS)?',[":Automobile",":Motorbike",":Bike",":Public_Transportation",":Walking"],captions=["Automobile","Motorbike","Bike","Public_Transportation","Walking"],index=0,)  
