@@ -154,5 +154,6 @@ with col3:
     st.write("6: Obesity Type III")
 
 st.write(" ")
+st.subheader("Reference:")
 image = Image.open('Body_Mass_Index.png')
 st.image(image, caption='Body Mass Index')
