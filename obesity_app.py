@@ -9,14 +9,12 @@ from PIL import Image
 st.write("""
 # Estimation of obesity levels based on eating habits and physical condition
 
-This app predicts  obesity levels
-
+This app predicts  obesity levels 
 Data obtained from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition).
          
 Developed By: 65076024 Tawichai Saekua and 65076069 Sekson Hompangwhai
 
 """)
-
 st.sidebar.header('User Input Features')
 
 
@@ -85,6 +83,7 @@ for col in encode:
 df = df[:1] # Selects only the first row (the user input data)
 
 # Displays the user input features
+st.write("")
 st.subheader('User Input features')
 
 if uploaded_file is not None:
@@ -100,23 +99,60 @@ load_clf = pickle.load(open('obesity_clf.pkl', 'rb'))
 prediction = load_clf.predict(df)
 prediction_proba = load_clf.predict_proba(df)
 
+#Show User Input Detail
+# Displays the user input features
+st.subheader('User Input features Detail:')
+st.write("General Key Information")
+st.write(f"Age: " , df["Age"].to_string() + " year(s)")
+
+st.write("height : " + df["Height"].to_string() + " (meters)")
+st.write("weight : " + df["Weight"].to_string() + " (kilograms)")
+st.write(" ")
+
 st.write(" ")
 st.subheader('Prediction')
-iBMI = df["Weight"]/(df["Height"]*df["Height"])
-st.subheader('BMI = ' + str(iBMI))
 obesity_Levels = np.array(['Insufficient Weight','Normal Weight','Overweight Level I','Overweight Level II','Obesity I','Obesity II','Obesity III'])
-st.write(obesity_Levels[prediction])
 
-image = Image.open('Body_Mass_Index.png')
-st.image(image, caption='Body Mass Index')
+#set color
+if  prediction == 0:
+    strprediction = ":blue[" + str(obesity_Levels[prediction]) + "]"
+elif prediction == 1:
+    strprediction = ":green[" + str(obesity_Levels[prediction]) + "]"
+elif prediction == 2:
+    strprediction = ":orange[" + str(obesity_Levels[prediction]) + "]"
+elif prediction == 3:    
+    strprediction = ":orange[" + str(obesity_Levels[prediction]) + "]"
+elif prediction == 4:    
+    strprediction = ":red[" + str(obesity_Levels[prediction]) + "]"
+elif prediction == 5:    
+    strprediction = ":red[" + str(obesity_Levels[prediction]) + "]"    
+elif prediction == 6:    
+    strprediction = ":red[" + str(obesity_Levels[prediction]) + "]"        
+else:    
+    strprediction =  str(obesity_Levels[prediction]) 
 
+st.subheader(strprediction)
+iBMI = df["Weight"]/(df["Height"]*df["Height"])
+
+st.write('BMI = ' + str(iBMI.to_string()))
+st.write(" ")
+
+#List all probability on each classes
 st.subheader('Prediction Probability')
 st.write(prediction_proba)
 st.write("Obesity level Class Code:")
-st.write("0: Insufficient Weight")
-st.write("1: Normal Weight")
-st.write("2: Overweight Level I")
-st.write("3: Overweight Level II")
-st.write("4: Obesity Type I")
-st.write("5: Obesity Type II")
-st.write("6: Obesity Type III")
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.write("0: Insufficient Weight")
+    st.write("1: Normal Weight")
+with col2: 
+    st.write("2: Overweight Level I")
+    st.write("3: Overweight Level II")
+with col3:    
+    st.write("4: Obesity Type I")
+    st.write("5: Obesity Type II")
+    st.write("6: Obesity Type III")
+
+st.write(" ")
+image = Image.open('Body_Mass_Index.png')
+st.image(image, caption='Body Mass Index')
